@@ -122,6 +122,8 @@ try:
                     if spot[start+(int(guess[1])-1)*5]=="💨":
                         print("Miss")        
                         time.sleep(1)
+                    if spot== "24":
+                        print("lol")
             print(guess)     
         os.system("cls")
 except:
