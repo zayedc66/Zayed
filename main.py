@@ -4,6 +4,8 @@
 #spot=["o"]*25
 import os, random, time
 spot=[]
+turn=0
+ships_left=4
 def start_game():
     #this method allows me to set all the spots on the board as the wave emoji
     spot=[]
@@ -118,12 +120,18 @@ try:
                     spot[start+(int(guess[1])-1)*5]=ships[start+(int(guess[1])-1)*5]
                     if spot[start+(int(guess[1])-1)*5]=="💥":
                         print("HIT!!")
+                        ships_left=ships_left-1
+                        if ships_left==0:
+                            print("You won")
+                            run=False
                         time.sleep(1)
                     if spot[start+(int(guess[1])-1)*5]=="💨":
-                        print("Miss")        
-                        time.sleep(1)
-                    if spot== "24":
-                        print("lol")
+                        print("Miss")  
+                        if turn >15:
+                         print("You Lost")  
+                         run=False      
+                         time.sleep(1)
+                    turn=turn+1
             print(guess)     
         os.system("cls")
 except:
