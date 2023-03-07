@@ -3,6 +3,7 @@
 #Date: 2 / 21 / 2023
 import os, time
 #for catching any misinputs 
+#try
 try:    
     Students=[["Tyteth","Bob","Pass",80,70,83,72,78],["Leslie", "Jone", "Pass",95,90,93,89,75],["Rock", "Coop", "Fail",84,28,39,21],["Maria", "Silva", "Pass",84,59,71,91,58],["Aaliyah","Rob","Fail",48,29,57,29,59]]
     menu = True
