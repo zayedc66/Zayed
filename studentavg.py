@@ -1,5 +1,6 @@
 import os
 import time
+def begin():
 try:    
     Students=[["John","Doe","Passed",80.0,79.0,83.0,72.0,78.5],["Jane","Doe","Passed",83.0,95.0,92.0,94.0,91],["George","Python","Failed",37.0,23.0,51.0,46.0,39.3],["Luke","Skywalker","Passed",19.0,77.0,80.0,83.0,64.8],["Teerth","Panchal","Failed",5.0,15.0,13.0,7.0,10.0]]
     menu = True
@@ -40,31 +41,25 @@ try:
                     if not menu_sel == "4":
                         print(menu_sel,"is not a valid menu option")
                     time. sleep(2)
-                    os.system('cls')    
-    def add():
-        while add == True:
-                os.system('cls')
+                    os.system('cls')   
+
+
+def add():
                 print("\nAdding student \n")
                 f_name = input("Student First Name: ")
                 l_name = input("Student Last Name: ")
-                os.system('cls')    
-                valid=False
-                mrks = True
-                while mrks == True:    
-                    os.system('cls')
-                    print("Now you will enter the marks for tests 1-4")
-                    try:        
+                os.system('cls')        
+                try:        
                         MATH = float(input("MATH mark %: "))
                         ENGLISH = float(input("ENGLISH mark %: "))
                         HISTORY = float(input("HISTORY mark %: "))
                         GYM = float(input("GYM mark %: "))
                         valid=True
-                    except:
+                except:
                         os.system('cls') 
-                        valid=False
                         print("please enter marks in numerical format, ##.# or ##")
                         time.sleep(2)
-                    if valid == True and MATH in range(0,100) and ENGLISH in range(0,100) and HISTORY in range(0,100) and GYM in range(0,100):
+                if valid == True and MATH in range(0,100) and ENGLISH in range(0,100) and HISTORY in range(0,100) and GYM in range(0,100):
                         os.system('cls')
                         student_avg = (MATH + ENGLISH + HISTORY + GYM)/4
                         if student_avg >= 50:
@@ -76,14 +71,12 @@ try:
                         if confirm == "Y":
                             confirm = True
                         else:
-                            confirm = False
                             print("Student was not added to list..... Returning to main menu.....")
                             time.sleep(2)
-                            valid = False
-                            add = False
-                            mrks == False
-                            menu = True    
-                def confirm():    
+                            
+                
+                
+def confirm():    
                     try:  
                         while confirm == True:
                             os.system('cls') 
@@ -127,7 +120,9 @@ try:
                         os.system('cls')
                         print("One of your marks is out of range, 0 to 100") 
                         time.sleep(2)
-    def list():  
+
+
+def list():  
         while list_stud == True:
                 os.system('cls')
                 for row in Students:
@@ -135,7 +130,9 @@ try:
                 back = input("Press any key to go back to menu...")
                 menu = True
                 list_stud = False
-    def course_avg():
+
+
+def course_avg():
         while Course_avg == True:
                 os.system('cls')
                 Math_avg = 0
