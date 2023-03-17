@@ -1,17 +1,15 @@
 import os
 import time
-def begin():
-try:    
-    Students=[["John","Doe","Passed",80.0,79.0,83.0,72.0,78.5],["Jane","Doe","Passed",83.0,95.0,92.0,94.0,91],["George","Python","Failed",37.0,23.0,51.0,46.0,39.3],["Luke","Skywalker","Passed",19.0,77.0,80.0,83.0,64.8],["Teerth","Panchal","Failed",5.0,15.0,13.0,7.0,10.0]]
-    menu = True
-    start = False
-    add = False
-    list_stud = False
-    Course_avg = False
-    login = False
-    wel_msg = "WELCOME TO STUDENT GRADES PROGRAM\n"
-    start==True
-    def main():
+Students=[["John","Doe","Passed",80.0,79.0,83.0,72.0,78.5],["Jane","Doe","Passed",83.0,95.0,92.0,94.0,91],["George","Python","Failed",37.0,23.0,51.0,46.0,39.3],["Luke","Skywalker","Passed",19.0,77.0,80.0,83.0,64.8],["Teerth","Panchal","Failed",5.0,15.0,13.0,7.0,10.0]]
+menu = True
+start = False
+add = False
+list_stud = False
+Course_avg = False
+login = False
+wel_msg = "WELCOME TO STUDENT GRADES PROGRAM\n"
+start==True
+def main():
         while menu == True:
                 os.system('cls')
                 print("\nWelcome to Student Grades Program \n\n-----------------------------------\n1)Add Student to list \n2)List Students + Student Average \n3)Course Average\n4)Exit Program\n-----------------------------------")
@@ -78,9 +76,8 @@ def add():
                 
 def confirm():    
                     try:  
-                        while confirm == True:
-                            os.system('cls') 
-                            try:
+                        os.system('cls') 
+                        try:
                                 Students.append([f_name,l_name,passed,MATH,ENGLISH,HISTORY,GYM,student_avg ])
                                 valid = False 
                                 add = False
@@ -101,7 +98,7 @@ def confirm():
                                     mrks = False
                                     menu = True 
                                     confirm = False                                                                       
-                            except:
+                        except:
                                 print("Student could not be added!....")
                                 valid = False 
                                 add = False
@@ -123,23 +120,21 @@ def confirm():
 
 
 def list():  
-        while list_stud == True:
-                os.system('cls')
-                for row in Students:
-                    print(f" First Name:{row[0]}\n Last Name:{row[1]}\n {row[2]}\n MATH------>{row[3]}%\n ENGLISH--->{row[4]}%\n HISTORY--->{row[5]}%\n GYM------->{row[6]}%\n STUDENT AVERAGE--->{row[7]}%\n----------------------------") 
-                back = input("Press any key to go back to menu...")
-                menu = True
-                list_stud = False
+            os.system('cls')
+            for row in Students:
+                print(f" First Name:{row[0]}\n Last Name:{row[1]}\n {row[2]}\n MATH------>{row[3]}%\n ENGLISH--->{row[4]}%\n HISTORY--->{row[5]}%\n GYM------->{row[6]}%\n STUDENT AVERAGE--->{row[7]}%\n----------------------------") 
+            back = input("Press any key to go back to menu...")
+            menu = True
+            list_stud = False
 
 
 def course_avg():
-        while Course_avg == True:
-                os.system('cls')
-                Math_avg = 0
-                English_avg = 0
-                History_avg = 0
-                Gym_avg = 0
-                try:
+            os.system('cls')
+            Math_avg = 0
+            English_avg = 0
+            History_avg = 0
+            Gym_avg = 0
+            try:
                     print("Math----------> 1)\nEnglish-------> 2)\nHistory-------> 3)\nGym-----------> 4)\nAll Courses---> 5)\n")
                     course_sel = int(input("Which course do you want to find the average for?: ")) 
                     os.system('cls')               
@@ -172,9 +167,7 @@ def course_avg():
                     else:
                         print("Not in range of options....")
                         time.sleep(2)                       
-                except:
+            except:
                     print("not a valid selection")            
-except:
-    print("PROGRAM ENDED")           
-              
-    
+       
+                       
