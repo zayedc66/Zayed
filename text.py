@@ -1,6 +1,6 @@
 import os
 import time
-import numpy as np
+#import numpy as np
 
 studentData = [
     ["John", "Doe", "Passed", 80.0, 79.0, 83.0, 72.0, 78.5],
@@ -53,32 +53,80 @@ def check_user_input(user):
 
 
 def add_student():
-    print("add")
-    print(studentData)
-    keepAdding = 1
+    os.system('cls')
+    print("\nAdding student \n")
+    f_name = input("Student First Name: ")
+    l_name = input("Student Last Name: ")
+    os.system('cls')    
+    valid=False
+    mrks = True
+    while mrks == True:    
+                os.system('cls')
+                print("Now you will enter the marks for tests 1-4")
+                try:        
+                    MATH = float(input("MATH mark %: "))
+                    ENGLISH = float(input("ENGLISH mark %: "))
+                    HISTORY = float(input("HISTORY mark %: "))
+                    GYM = float(input("GYM mark %: "))
+                    valid=True
+                except:
+                    os.system('cls') 
+                    valid=False
+                    print("please enter marks in numerical format, ##.# or ##")
+                    time.sleep(2)
+                if valid == True and MATH in range(0,100) and ENGLISH in range(0,100) and HISTORY in range(0,100) and GYM in range(0,100):
+                    os.system('cls')
+                    student_avg = (MATH + ENGLISH + HISTORY + GYM)/4
+                    if student_avg >= 50:
+                        passed = "Passed"
+                    elif student_avg < 50:
+                        passed = "Failed"             
+                    print(f_name,l_name,passed,"with an overall mark of: ",student_avg,"%" )
+                    confirm = input("Enter 'Y' to add student to database OR Enter 'N' to cancel (will return you to menu!): ").upper()
+                    if confirm == "Y":
+                        confirm = True
+                        main()
+                        os.system('cls')
+                    else:
+                        confirm = False
+                        print("Student was not added to list..... Returning to main menu.....")
+                        main()
+                        os.system('cls')
+
+    '''keepAdding = 1
     first = input('Plz give first')
     last = input('Plz give last')
     status = input('Plz give first')
     grades = input('Plz give grades').split(' ') 
     while keepAdding == 1:
         studentData.append([first,last,status, grades])
-        keepAdding = input('keep adding? 0 or 1')
+        keepAdding = input('keep adding? n or y')'''
         
         
 
 
-def list_student():
+'''def list_student():
 
     for row in studentData:
 
-        print(f""" First Name:{row[0]}\n 
-        Last Name:{row[1]}\n {row[2]}\n 
+        print(f""" First Name:{row[0]}\n Last Name:{row[1]}\n {row[2]}\n 
         MATH------>{row[3]}%\n 
         ENGLISH--->{row[4]}%\n 
         HISTORY--->{row[5]}%\n 
         GYM------->{row[6]}%\n 
         STUDENT AVERAGE--->{row[7]}%\n
-        ----------------------------""") 
+        ----------------------------""")'''
+
+def list_student():
+    for row in studentData:
+        print(f""" First Name:{row[0]}\n Last Name:{row[1]}\n {row[2]}\n 
+        MATH------>{row[3]}%\n 
+        ENGLISH--->{row[4]}%\n 
+        HISTORY--->{row[5]}%\n 
+        GYM------->{row[6]}%\n 
+        STUDENT AVERAGE--->{row[7]}%\n----------------------------""")
+        back = input("Press any key to go back to menu...")
+    main()
 
 
 def student_average(student_data):
