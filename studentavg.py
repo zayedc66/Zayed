@@ -44,13 +44,19 @@ def main():
 
 def add():
                 print("\nAdding student \n")
+                global f_name
                 f_name = input("Student First Name: ")
+                global l_name
                 l_name = input("Student Last Name: ")
                 os.system('cls')        
                 try:        
+                        global MATH
                         MATH = float(input("MATH mark %: "))
+                        global ENGLISH
                         ENGLISH = float(input("ENGLISH mark %: "))
+                        global HISTORY
                         HISTORY = float(input("HISTORY mark %: "))
+                        global GYM
                         GYM = float(input("GYM mark %: "))
                         valid=True
                 except:
@@ -59,7 +65,9 @@ def add():
                         time.sleep(2)
                 if valid == True and MATH in range(0,100) and ENGLISH in range(0,100) and HISTORY in range(0,100) and GYM in range(0,100):
                         os.system('cls')
+                        global student_avg
                         student_avg = (MATH + ENGLISH + HISTORY + GYM)/4
+                        global passed    
                         if student_avg >= 50:
                             passed = "Passed"
                         elif student_avg < 50:
