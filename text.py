@@ -134,8 +134,7 @@ def list_student():
         STUDENT AVERAGE--->{row[7]}%\n----------------------------""")
     back = input("Press the enter key to go back to menu...")
     os.system('cls')
-    main()
-    
+    main() 
 
 
 def course_average():
