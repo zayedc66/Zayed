@@ -7,7 +7,6 @@ import os, time, sys
 
 Names = ["Andrea", "Dylan", "Coltina", "Dawson", "Carter", "Zayed", "Hayden", "Owen", "Erik", "Gabe", "Christian", "Noah", "Theerth", "Sujen", "Thirn" ]
 
-
 # Selection sort in Python
 # time complexity O(n*n)
 #sorting by finding min_index
@@ -62,37 +61,47 @@ def binary_search(arr, low, high, x):
 #find = input("Enter The Name You Would Like To Search")
 
 
-def Add_name():
-    ent_name = str(input("Enter a name you would like to add to the list: "))
-       
+def add_name():
+    global if_on_list
+
+    ent_name = str(input("Enter a name you would like to add to the list: "))        
     if_on_list = int(binary_search(Names,0,len(Names)-1,ent_name))
-       
+        
     if if_on_list == -1:
         Names.append(ent_name)
     elif not if_on_list == -1:
         print(ent_name,"is already on the list")
 
 
-
-
 def sort():
     bubbleSort(Names)
 
+    
+def quit():
+    os.system('cls')    
+    print("Application Shutting Down...")
+    time.sleep(2)
+    os.system('cls')    
+    print("Shut down")
 
 def search():
+    global look
     find = input("Enter the name to search: ")
-               
-    look = int(binary_search(Names,0,len(Names)-1,find))
+    look = (binary_search(Names,0,len(Names)-1,find))
+    if look == -1:
+        print("Not in list")
+    else:
+        print(find,"Is already in the array")     
      
-dic = {1:Add_name,2:sort,3:search,4:quit,}
-
+dic = {1:add_name,2:sort,3:search,4:quit,}
+ 
 
 def menu():
     print (f"List Of Names: {Names}")
     correctInput = False
     #print intro statement
     while correctInput == False:
-        print("-----------------------------------\n1) Add A Name To The List \n2) Sort The List \n3) Search A Name On The List \n4) EXIT\n-----------------------------------")
+        print("-----------------------------------\n1) Add A Name To The List \n2) Sort The List (case sensitive) \n3) Search A Name On The List \n4) EXIT\n-----------------------------------")
         user_input = input("Please Choose One Of The Four Avaliable Options(Numbers: 1-4): ")
         if user_input.isnumeric():
             if int(user_input) in range(1,5):
@@ -103,13 +112,9 @@ def menu():
         else:
             print("Invalid Input. Please Try Again")
     dic[user_input]()
-       
-menu()
 
-
-
-
-
-
-
-
+while True:      
+    menu()
+    print("Loading...")
+    time.sleep(3)
+    os.system('cls')
