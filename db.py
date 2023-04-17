@@ -1,6 +1,6 @@
-#Made by Andrew
-#Date: Jan 16 2023
-#Purpose: Add new student names and calculate student average
+#Made by Zayed
+#Date: Jan 12 2023
+#Purpose: Databasing
 
 
 import os, time, sys, sqlite3
@@ -13,7 +13,12 @@ addition = False
 student_grades = {}
 
 
-Student_Data = [["Walter", "White", "Passed", 90.3, 100, 98.7, 89.9, 94.7],["Jesse", "Pinkman", "Failed", 21.3, 55.3, 52.8, 31.2, 40.2],["Gus", "Fring", "Passed", 92.6, 84.5, 87.2, 94.7, 89.8],["Tuco", "Salamanca", "Failed", 40.3, 38.6, 45.8, 67.9, 48.2],["Hank", "Shradder", "Passed", 80.5, 70.4, 68.7, 73.2, 73.2]
+Student_Data = [
+    ["Yeast", "Dune", "Passed", 80.0, 79.0, 83.0, 72.0, 78.5],
+    ["Noel", "Noa", "Passed", 83.0, 95.0, 92.0, 94.0, 91],
+    ["Cris", "Ron", "Failed", 37.0, 23.0, 51.0, 46.0, 39.3],
+    ["Leo", "Mane", "Passed", 19.0, 77.0, 80.0, 83.0, 64.8],
+    ["Tyrone", "Ream", "Failed", 5.0, 15.0, 13.0, 7.0, 10.0]
 ]
 
 
@@ -98,7 +103,6 @@ def course_average():
            for student in Student_Data:
                x += student[courses.index(i) + 3]    
            print (f"{i} avg: {x / len(Student_Data)}")
-           #len(studentData)
    back = input("Press any key to go back to menu...")
    main()
 
@@ -144,11 +148,11 @@ def insert_db(conn,table, columns,data):
     conn.commit()
 
 
-insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Walter", "White", "Passed", 90.3, 100, 98.7, 89.9, 94.7])
-insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Jesse", "Pinkman", "Failed", 21.3, 55.3, 52.8, 31.2, 40.2])
-insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Gus", "Fring", "Passed", 92.6, 84.5, 87.2, 94.7, 89.8])
-insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Tuco", "Salamanca", "Failed", 40.3, 38.6, 45.8, 67.9, 48.2])
-insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Hank", "Shradder", "Passed", 80.5, 70.4, 68.7, 73.2, 73.2])
+insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Yeast", "Dune", "Passed", 80.0, 79.0, 83.0, 72.0, 78.5])
+insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Noel", "Noa", "Passed", 83.0, 95.0, 92.0, 94.0, 91])
+insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Cris", "Ron", "Failed", 37.0, 23.0, 51.0, 46.0, 39.3])
+insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Leo", "Mane", "Passed", 19.0, 77.0, 80.0, 83.0, 64.8])
+insert_db(connection,"lesson",["first","last","Result", "ENGLISH", "CHEMISTRY", "FRENCH", "MATH"],["Tyrone", "Ream", "Failed", 5.0, 15.0, 13.0, 7.0, 10.0])
 
 
 def select_db(conn,table,columns_and_data=None):
