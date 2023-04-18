@@ -78,7 +78,6 @@ def sort():
 
     
 def quit():
-    os.system('cls')    
     print("Application Shutting Down...")
     time.sleep(2)
     os.system('cls')    

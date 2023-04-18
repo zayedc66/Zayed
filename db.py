@@ -2,8 +2,6 @@
 #Date: Jan 12 2023
 #Purpose: Databasing
 
-
-
 import os, time, sys, sqlite3
 Student_Data = False
 Options = False
@@ -11,10 +9,8 @@ score = False
 menu = True
 listing = False
 addition = False
-student_grades = {}
-
-
-Student_Data = ["Andrea", "Dylan", "Coltina", "Dawson", "Carter", "Zayed", "Hayden", "Owen", "Erik", "Gabe", "Christian", "Noah", "Theerth", "Sujen", "Thirn" ]
+#Student_Data = ["Andrea", "Dylan", "Coltina", "Dawson", "Carter", "Zayed", "Hayden", "Owen", "Erik", "Gabe", "Christian", "Noah", "Theerth", "Sujen", "Thirn" ]
+Student_Data = []
 
 def create_connection(db_file):
     #create a database connection to the SQLite database
@@ -28,12 +24,15 @@ def create_connection(db_file):
 
 
 def create_table(conn,table, columns):
+        #Where connection is the database, test is the table, first TEXT is the name and type 
+        #of the first column and last TEXT is the name and type of the second column.
     col = ",".join(columns)
     sql = f'''CREATE TABLE IF NOT EXISTS {table}( id INTEGER PRIMARY KEY, {col});'''
     conn.execute(sql)
 
 
 def insert_db(conn,table, columns,data):
+    #Where connection is the database
     sql=f'''INSERT INTO {table} {tuple(columns)} VALUES {tuple(data)};'''
     conn.execute(sql)
     conn.commit()
@@ -53,29 +52,20 @@ def delete_db(conn,table,column,what_to_remove):
     conn.execute(sql)
     conn.commit()  
 
-
 def update_db(conn,table,columns_and_data,where_to_update):
     col = ",".join(columns_and_data)
     sql = f"UPDATE {table} set {col} where {where_to_update}"
     conn.execute(sql)
     conn.commit()
 
-
 connection = create_connection("db_file.db")
 create_table(connection,"studentbook",["first TEXT","last TEXT","result TEXT","PHYSICS REAL","CHEMISTRY REAL","FRENCH REAL","MATH REAL","AVERAGE REAL"])
 results=select_db(connection,"studentbook").fetchall()
 Students = list(map(list, results))
 
-'''
-insert_db(connection,"studentbook",["first","last","Result", "PHYSICS", "CHEMISTRY", "FRENCH", "MATH", "AVERAGE"],["Yeast", "Dune", "Passed", 80.0, 79.0, 83.0, 72.0, 78.5])
-insert_db(connection,"studentbook",["first","last","Result", "PHYSICS", "CHEMISTRY", "FRENCH", "MATH", "AVERAGE"],["Noel", "Noa", "Passed", 83.0, 95.0, 92.0, 94.0, 91])
-insert_db(connection,"studentbook",["first","last","Result", "PHYSICS", "CHEMISTRY", "FRENCH", "MATH", "AVERAGE"],["Cris", "Ron", "Failed", 37.0, 23.0, 51.0, 46.0, 39.3])
-insert_db(connection,"studentbook",["first","last","Result", "PHYSICS", "CHEMISTRY", "FRENCH", "MATH", "AVERAGE"],["Leo", "Mane", "Passed", 19.0, 77.0, 80.0, 83.0, 64.8])
-insert_db(connection,"studentbook",["first","last","Result", "PHYSICS", "CHEMISTRY", "FRENCH", "MATH", "AVERAGE"],["Tyrone", "Ream", "Failed", 5.0, 15.0, 13.0, 7.0, 10.0])
-'''
-
 def add_student():
    os.system('cls')
+   #results into a list line 70
    Student_Data = list(map(list,results))
    print("\nAdding student \n")
    f_name = input("Student First Name: ")
@@ -106,24 +96,20 @@ def add_student():
                        passed = "Failed"            
                    print(f"{f_name} {l_name} {passed} with an overall mark of: {student_avg} %" )
                    insert_db(connection,"studentbook", ["first","last","result","PHYSICS","CHEMISTRY","FRENCH","MATH","AVERAGE"],[f_name,l_name,passed,PHYSICS,CHEMISTRY,FRENCH,MATH,student_avg])
-                   confirm = input("Enter 'E' to add student to database OR Enter 'N' to cancel (will return you to menu!): ").upper()
-                   if confirm == "E":
-                       os.system('cls')
-                       #Student_Data.append([f_name,l_name,passed,PHYSICS,CHEMISTRY,FRENCH,CHEMISTRY,student_avg])
-                       main()
-                       os.system('cls')
-                   else:
-                       print("Student was not added to list..... Returning to main menu.....")
+                   confirm = input("Enter any key to add to database and proceed... (Main Menu):  ").upper()
+                   if confirm == "":
                        os.system('cls')
                        main()
+               else:
+                   input("Invalid grade numbers press enter to try again")
 
-'''
 def list_student():
    os.system('cls')
-   Student_Data = list(map(list,results))
-   for row in Student_Data:
+   results=select_db(connection,"studentbook").fetchall() #|taking the result out the database
+   Student_Data = list(map(list,results)) #turning results into lists
+   for row in Student_Data: 
        print(row)
-       print(f""" First Name:{row[0]}\n Last Name:{row[1]}\n {row[2]}\n
+       print(f""" First Name:{row[1]}\n Last Name:{row[2]}\n
        PHYSICS------>{row[3]}%\n
        CHEMISTRY--->{row[4]}%\n
        FRENCH--->{row[5]}%\n
@@ -132,44 +118,31 @@ def list_student():
    back = input("Press the enter key to go back to menu...")
    os.system('cls')
    main()
-'''
-
-def list_student():
-    print('\x1bc')
-    results=select_db(connection,"Students_table").fetchall()
-    Students = list(map(list, results))
-    for row in Students:
-        print(f" First Name:{row[1]}\n Last Name:{row[2]}\n {row[3]}\n MATH------>{row[4]}%\n ENGLISH--->{row[5]}%\n HISTORY--->{row[6]}%\n GYM------->{row[7]}%\n STUDENT AVERAGE--->{row[8]}%\n----------------------------") 
-    goback = input("Press the enter key to go back to menu...")
-    menu()
 
 def Student_Average():
     correctInput = False
     choice = False
-    counter = 0
-    Student_Data = list(map(list,results))
-    for x in Student_Data:
-        print(str(counter) + ": " + x[0])
-        counter += 1
+    Student_Data = list(map(list,results)) #makes database into list
+    for i,x in enumerate (Student_Data): # adds an extra item for every item in your list displaying a number (X) 
+        print(str(i) + ": " + x[0]) #i is 0 then changes by 1 each time (loop)
     while correctInput == False:
         choice = input("Enter number that corresponds to the student: ")
-        if choice.isnumeric() and int(choice) in range(0, counter, 1):
+        if choice.isnumeric() and int(choice) in range(0, i, 1): #checking if int or float
             choice = int(choice)
             correctInput = True
         else:
             print("Invalid Input. Try again")
-    print(str(Student_Data[choice][5]))  
+    print(str(Student_Data[choice][5]))  #prints the marks
 
 
 def course_average():
-   courses = ["Physics", "Chemistry", "French", "Math"]
+   courses = ["Physics", "Chemistry", "French", "Math"] #makes a list of course names to be looped thru when displaying course avgs
    Student_Data = list(map(list,results))
-   for i in courses:
-           x = 0
-           for student in Student_Data:
-               x += student[courses.index(i) + 4]    
-           print (f"{i} avg: {x / len(Student_Data)}")
-           #len(studentData)
+   for i in courses: #i runs the courses
+           x = 0 #starting value i to x value 
+           for student in Student_Data: #adds the student grades in that course only 
+               x += student[courses.index(i) + 4]    #adds courses where physics is 0 chem is 1 and other courses respectively (0,1,2,3)
+           print (f"{i} avg: {x / len(Student_Data)}") # loops through and adds values as courses
    back = input("Press any key to go back to menu...")
    main()
 
