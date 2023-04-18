@@ -3,8 +3,6 @@
 #Search and Sort
 
 import os, time, sys
-
-
 Names = ["Andrea", "Dylan", "Coltina", "Dawson", "Carter", "Zayed", "Hayden", "Owen", "Erik", "Gabe", "Christian", "Noah", "Theerth", "Sujen", "Thirn" ]
 
 # Selection sort in Python
